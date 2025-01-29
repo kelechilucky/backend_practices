@@ -5,6 +5,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const AuthRoutes = require("./routes/auth");
 
 // init express app
 const app = express();
@@ -13,6 +14,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// this is where your entry point file which is your index.js maps the routes/endpoint
+
+app.use("/api/auth", AuthRoutes)
 // connect mongodb
 mongoose
   .connect(process.env.MONGODB_URL)

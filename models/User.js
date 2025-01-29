@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 const UserSchema = new mongoose.Schema({
   Username: {
@@ -14,13 +14,13 @@ const UserSchema = new mongoose.Schema({
   phone: {
     type: String,
     required: true,
-    match: [/^\d{10,15$}/, "phone number must be 10 to 15 digits"],
+    match: [/^[0-9]{10,15}$/, "phone number must be 10 to 15 digits"],
   },
   email: {
     type: String,
     required: true,
     unique: true,
-    match: [/^\S{10,15$}/, "phone number must be 10 to 15 digits"],
+    match: [/@.*\.com$/, "email must be valid"],
   },
 });
 
